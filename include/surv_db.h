@@ -5,6 +5,8 @@
 #ifndef SURV_DB_H
     #define SURV_DB_H
 
+#include "project.h"
+
 #define NB_SURV_PERK 149
 #define NB_KILLER_PERK 133
 #define NB_SURV 46
@@ -57,13 +59,14 @@
 #define TAURIE "Taurie Cain"
 #define SURV_ALL "All"
 
-typedef struct surv_perks_s {
-    char *surv_owner_name;
+typedef struct perks_s {
+    char *owner_name;
     char *en_name;
     char *fr_name;
     char *icon_path;
-} surv_perks_t;
+    sfSprite *perk_sprite;
+} perks_t;
 
-extern surv_perks_t SURV_PERKS_LIST[NB_SURV_PERK];
+extern perks_t SURV_PERKS_LIST[NB_SURV_PERK];
 
 #endif //SURV_DB_H

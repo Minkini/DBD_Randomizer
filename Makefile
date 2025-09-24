@@ -34,7 +34,10 @@ SRC	= \
 	\
 	src/render/window/create_window.c	\
 	\
-	src/render/sprite/create_sprite.c	\
+	src/render/content/sprite/create_sprite.c	\
+	\
+	src/render/content/tools/init_perks.c	\
+	src/render/content/tools/load_content.c	\
 	\
 	src/scene/scene.c	\
 	\
@@ -46,6 +49,8 @@ SRC	= \
 	src/tools/randomizer/library/add_all_sided_perks.c	\
 	src/tools/randomizer/library/clear_list.c	\
 	src/tools/randomizer/library/create_first_list_node.c	\
+	src/tools/randomizer/library/remove_in_linked_list.c	\
+	src/tools/randomizer/library/remove_surv_perks_by_characters.c	\
 
 SRC := $(filter-out $(TEST_MAIN), $(SRC))
 OBJ	:= $(patsubst src/%.c, build/obj/%.o, $(SRC))

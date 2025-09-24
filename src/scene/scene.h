@@ -12,5 +12,12 @@ typedef enum scene_e {
     SURV_RANDOMIZER,
 } scene_e;
 
+typedef struct scene_s {
+    scene_e scene;
+    void (*update)(struct scene_s *scene, sfEvent *event);
+    void (*draw)(struct scene_s *scene, sfRenderWindow *window);
+} scene_t;
+
+
 void handle_scene(general_t *general);
 #endif //SCENE_H

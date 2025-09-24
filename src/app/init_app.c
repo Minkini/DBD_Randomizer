@@ -5,6 +5,7 @@
 #include "project.h"
 #include "window.h"
 #include "app.h"
+#include "../render/content/content.h"
 
 void init_app(void)
 {
@@ -17,5 +18,6 @@ void init_app(void)
         free(general);
         return;
     }
+    load_content();
     run_app(general);
 }
