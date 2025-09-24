@@ -49,7 +49,7 @@ static int *pick_n_random_surv_perks(surv_randomizer_perks_list_t **perks, int n
     if (!id_perks_picked || !cpy)
         return NULL;
 
-    while (cpy->next != NULL) {
+    while (cpy) {
         count_perks_in_list++;
         cpy = cpy->next;
     }
