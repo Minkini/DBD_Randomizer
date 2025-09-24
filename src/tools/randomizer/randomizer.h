@@ -16,14 +16,16 @@ typedef enum {
 } player_side_e;
 
 typedef struct surv_randomizer_perks_list_s {
-    surv_perks_t *perk;
+    perks_t *perk;
     struct surv_randomizer_perks_list_s *next;
 } surv_randomizer_perks_list_t;
 
-int add_in_randomizer_list(void **list, player_side_e side, surv_perks_t *perk_to_add);
+int add_in_randomizer_list(void **list, player_side_e side, perks_t *perk_to_add);
 int *random_pick_perks(void **list, player_side_e side, int nb_random_perks_pick);
 int add_surv_perks_by_characters(void **list, char *character);
 int add_all_sided_perks(void **list, player_side_e side);
 void clear_list(void **list, player_side_e side);
 surv_randomizer_perks_list_t *create_surv_first_list_node(void);
+void remove_in_linked_list(void **list, player_side_e side, perks_t *perk_to_remove);
+int remove_surv_perks_by_characters(void **list, char *character);
 #endif //RANDOMIZER_H

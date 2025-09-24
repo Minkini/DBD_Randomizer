@@ -46,7 +46,7 @@ static int *pick_n_random_surv_perks(surv_randomizer_perks_list_t **perks, int n
     surv_randomizer_perks_list_t *cpy = *perks;
     int *id_perks_picked = malloc(sizeof(int) * nb_random_perks_pick);
 
-    if (!id_perks_picked)
+    if (!id_perks_picked || !cpy)
         return NULL;
 
     while (cpy->next != NULL) {
