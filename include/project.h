@@ -18,6 +18,8 @@
 #include <SFML/Audio.h>
 #include <SFML/Network.h>
 
+#include "scene_enum.h"
+
 typedef enum return_code {
     SUCCESS = 0,
     ERROR = -1,
@@ -26,7 +28,7 @@ typedef enum return_code {
 typedef struct general_s {
     sfRenderWindow *window;
     sfEvent event;
-    int current_scene;
+    scene_e current_scene;
 } general_t;
 
 #endif //PROJECT_H

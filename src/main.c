@@ -24,15 +24,15 @@ static void display_perks_name(surv_randomizer_perks_list_t **list,
 int main(void)
 {
     surv_randomizer_perks_list_t *list = calloc(1, sizeof(surv_randomizer_perks_list_t));
-    int nb_perk = 4;
+    int nb_perk = 3;
 
     add_surv_perks_by_characters((void **)&list, MEG);
-    remove_surv_perks_by_characters((void **)&list, MEG);
+    //remove_surv_perks_by_characters((void **)&list, MEG);
     int *test = random_pick_perks((void **)&list, SURVIVOR, nb_perk);
     if (!test)
         return 1;
     display_perks_name(&list, test, nb_perk);
     clear_list((void **)&list, SURVIVOR);
-    //init_app();
+    init_app();
     return 0;
 }

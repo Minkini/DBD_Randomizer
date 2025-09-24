@@ -6,6 +6,7 @@
 #define APP_H
 
 #include "project.h"
+#include "scene.h"
 
 void init_app(void);
 int run_app(general_t *general);

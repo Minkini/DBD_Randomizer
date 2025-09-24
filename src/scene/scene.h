@@ -5,19 +5,16 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include "scene_enum.h"
 #include "project.h"
-
-typedef enum scene_e {
-    MAIN_MENU,
-    SURV_RANDOMIZER,
-} scene_e;
 
 typedef struct scene_s {
     scene_e scene;
-    void (*update)(struct scene_s *scene, sfEvent *event);
-    void (*draw)(struct scene_s *scene, sfRenderWindow *window);
+    void (*update)(general_t *general);
+    void (*draw)(general_t *general);
 } scene_t;
 
+extern scene_t const SCENE_LIST[];
 
 void handle_scene(general_t *general);
 #endif //SCENE_H
