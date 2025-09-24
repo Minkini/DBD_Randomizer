@@ -13,16 +13,7 @@ void init_app(void)
     if (general == NULL) {
         return;
     }
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-        free(general);
-        printf("SDL_Init Error: %s\n", SDL_GetError());
-        return;
-    }
     if (create_window(general) == ERROR) {
-        free(general);
-        return;
-    }
-    if (create_renderer(general) == ERROR) {
         free(general);
         return;
     }

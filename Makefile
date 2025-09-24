@@ -7,9 +7,8 @@
 
 TARGET := theia
 
-# SDL2
-CFLAGS += $(shell sdl2-config --cflags) -lavformat -lavcodec -lavutil -lswscale
-LDFLAGS := $(shell sdl2-config --libs)
+# CSFML
+LIBS := -lcsfml-system -lcsfml-window -lcsfml-graphics -lcsfml-audio -lcsfml-network
 
 # Include directories
 INCLUDE := $(shell find . -type f -name '*.h' \
@@ -34,7 +33,10 @@ SRC	= \
 	src/app/stop_app.c	\
 	\
 	src/render/window/create_window.c	\
-	src/render/window/create_renderer.c	\
+	\
+	src/render/sprite/create_sprite.c	\
+	\
+	src/scene/scene.c	\
 	\
 	src/event/handle_event.c	\
 	\
@@ -42,6 +44,8 @@ SRC	= \
 	src/tools/randomizer/library/random_picker.c	\
 	src/tools/randomizer/library/add_perks_by_characters.c	\
 	src/tools/randomizer/library/add_all_sided_perks.c	\
+	src/tools/randomizer/library/clear_list.c	\
+	src/tools/randomizer/library/create_first_list_node.c	\
 
 SRC := $(filter-out $(TEST_MAIN), $(SRC))
 OBJ	:= $(patsubst src/%.c, build/obj/%.o, $(SRC))
@@ -74,7 +78,7 @@ $(TARGET): $(OBJ)
 	@printf "\e[38;5;029m🔄 Compiling target !\e[0m\n"
 	@printf "\e[38;5;029m📜 Name: \e[38;5;220m$(TARGET)\e[0m\n"
 	@mkdir -p build/bin/
-	@gcc -o build/bin/$(TARGET) $(OBJ) $(LDFLAGS)
+	@gcc -o build/bin/$(TARGET) $(OBJ) $(LIBS)
 	@cp build/bin/$(TARGET) .
 
 # Clean up generated objects

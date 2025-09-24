@@ -5,12 +5,14 @@
 #include "app.h"
 #include "project.h"
 #include "event.h"
+#include "scene.h"
 
 int run_app(general_t *general)
 {
-    general->running = 1;
-    while (general->running) {
+    general->current_scene = MAIN_MENU;
+    while (sfRenderWindow_isOpen(general->window)) {
         handle_event(general);
+        handle_scene(general);
     }
     stop_app(general);
     return SUCCESS;

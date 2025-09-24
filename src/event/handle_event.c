@@ -7,9 +7,9 @@
 
 void handle_event(general_t *general)
 {
-    while (SDL_PollEvent(&general->event)) {
-        if (general->event.type == SDL_QUIT) {
-            general->running = 0;
+    while (sfRenderWindow_pollEvent(general->window, &general->event)) {
+        if (general->event.type == sfEvtClosed) {
+            sfRenderWindow_close(general->window);
         }
     }
 }

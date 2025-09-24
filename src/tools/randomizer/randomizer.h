@@ -24,4 +24,6 @@ int add_in_randomizer_list(void **list, player_side_e side, surv_perks_t *perk_t
 int *random_pick_perks(void **list, player_side_e side, int nb_random_perks_pick);
 int add_surv_perks_by_characters(void **list, char *character);
 int add_all_sided_perks(void **list, player_side_e side);
+void clear_list(void **list, player_side_e side);
+surv_randomizer_perks_list_t *create_surv_first_list_node(void);
 #endif //RANDOMIZER_H

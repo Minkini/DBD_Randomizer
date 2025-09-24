@@ -7,15 +7,13 @@
 
 int create_window(general_t *general)
 {
-    general->window = SDL_CreateWindow("DBD Tools",
-    SDL_WINDOWPOS_CENTERED,
-    SDL_WINDOWPOS_CENTERED,
-    1920, 1080,
-    SDL_WINDOW_SHOWN);
+    int window_width = 1920;
+    int window_height = 1080;
+    sfVideoMode mode = {window_width, window_height, 32};
 
+    general->window = sfRenderWindow_create(mode, "DBD Tools", sfResize | sfClose, NULL);
     if (general->window == NULL) {
-        printf("SDL_CreateWindow Error: %s\n", SDL_GetError());
-        SDL_Quit();
+        printf("window creation failed\n");
         return ERROR;
     }
     return SUCCESS;

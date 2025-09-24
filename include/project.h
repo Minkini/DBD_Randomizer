@@ -11,7 +11,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include <SDL2/SDL.h>
+#include <SFML/Config.h>
+#include <SFML/System.h>
+#include <SFML/Window.h>
+#include <SFML/Graphics.h>
+#include <SFML/Audio.h>
+#include <SFML/Network.h>
 
 typedef enum return_code {
     SUCCESS = 0,
@@ -19,10 +24,9 @@ typedef enum return_code {
 } return_code_e;
 
 typedef struct general_s {
-    SDL_Window *window;
-    SDL_Renderer *renderer;
-    SDL_Event event;
-    int running;
+    sfRenderWindow *window;
+    sfEvent event;
+    int current_scene;
 } general_t;
 
 #endif //PROJECT_H
