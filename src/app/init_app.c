@@ -18,6 +18,6 @@ void init_app(void)
         free(general);
         return;
     }
-    load_content();
+    load_content(general);
     run_app(general);
 }

@@ -21,7 +21,7 @@ static int add_surv_perk_in_linked_list(surv_randomizer_perks_list_t **perk_list
         return ERROR;
     }
 
-    //append new_perk in linked list
+    //append new_perk in linked scene_events
     if ((*perk_list)->perk == NULL) {
         *perk_list = new_perk;
         return SUCCESS;

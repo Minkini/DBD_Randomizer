@@ -25,9 +25,12 @@ typedef enum return_code {
     ERROR = -1,
 } return_code_e;
 
+typedef struct content_s content_t;
+
 typedef struct general_s {
     sfRenderWindow *window;
     sfEvent event;
+    content_t *content;
     scene_e current_scene;
 } general_t;
 

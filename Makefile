@@ -5,7 +5,7 @@
 ## Makefile SDL2 ready
 ##
 
-TARGET := theia
+TARGET := DBD_Tools
 
 # CSFML
 LIBS := -lcsfml-system -lcsfml-window -lcsfml-graphics -lcsfml-audio -lcsfml-network
@@ -39,9 +39,12 @@ SRC	= \
 	src/render/content/tools/init_perks.c	\
 	src/render/content/tools/load_content.c	\
 	\
+	src/render/draw/main_menu.c	\
+	\
 	src/scene/scene.c	\
 	\
 	src/event/handle_event.c	\
+	src/event/scene_events/main_menu.c	\
 	\
 	src/tools/randomizer/library/add_in_linked_list.c	\
 	src/tools/randomizer/library/random_picker.c	\

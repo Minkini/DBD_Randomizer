@@ -4,9 +4,10 @@
 
 #include "scene.h"
 #include "event.h"
+#include "render.h"
 
 scene_t const SCENE_LIST[] = {
-    {MAIN_MENU, NULL, NULL},
+    {MAIN_MENU, &main_menu_scene_update, &draw_main_menu},
     {SURV_RANDOMIZER, NULL, NULL},
     {NONE, NULL, NULL},
 };
