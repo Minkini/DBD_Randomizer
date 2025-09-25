@@ -17,4 +17,5 @@ typedef struct scene_s {
 extern scene_t const SCENE_LIST[];
 
 void handle_scene(general_t *general);
+void switch_scene(general_t *general, scene_e new_scene);
 #endif //SCENE_H

@@ -17,8 +17,15 @@ void handle_scene(general_t *general)
     for (int i = 0; SCENE_LIST[i].scene != NONE; i++) {
         if (SCENE_LIST[i].scene == general->current_scene) {
             handle_event(general, SCENE_LIST[i].update);
-            //SCENE_LIST[i].draw(general);
+            SCENE_LIST[i].draw(general);
         }
     }
     sfRenderWindow_display(general->window);
 };
+
+void switch_scene(general_t *general, scene_e new_scene)
+{
+    if (general->current_scene != new_scene) {
+        general->current_scene = new_scene;
+    }
+}

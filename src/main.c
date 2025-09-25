@@ -21,7 +21,7 @@ static void display_perks_name(surv_randomizer_perks_list_t **list,
     }
 }
 
-int main(void)
+static int temp(void)
 {
     surv_randomizer_perks_list_t *list = calloc(1, sizeof(surv_randomizer_perks_list_t));
     int nb_perk = 3;
@@ -33,6 +33,11 @@ int main(void)
         return 1;
     display_perks_name(&list, test, nb_perk);
     clear_list((void **)&list, SURVIVOR);
+}
+
+int main(void)
+{
     init_app();
+    temp();        //TODO temporary function
     return 0;
 }

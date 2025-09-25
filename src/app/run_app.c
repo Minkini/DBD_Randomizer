@@ -4,12 +4,11 @@
 
 #include "app.h"
 #include "project.h"
-#include "event.h"
 #include "scene.h"
 
 int run_app(general_t *general)
 {
-    general->current_scene = MAIN_MENU;
+    switch_scene(general, MAIN_MENU);   //first scene when the app is launched
     while (sfRenderWindow_isOpen(general->window)) {
         handle_scene(general);
     }
