@@ -8,7 +8,7 @@
 TARGET := DBD_Tools
 
 # CSFML
-LIBS := -lcsfml-system -lcsfml-window -lcsfml-graphics -lcsfml-audio -lcsfml-network
+LIBS := -lcsfml-system -lcsfml-window -lcsfml-graphics -lcsfml-audio -lcsfml-network -lm
 
 # Include directories
 INCLUDE := $(shell find . -type f -name '*.h' \
@@ -46,14 +46,18 @@ SRC	= \
 	src/event/handle_event.c	\
 	src/event/scene_events/main_menu.c	\
 	\
-	src/tools/randomizer/library/add_in_linked_list.c	\
-	src/tools/randomizer/library/random_picker.c	\
-	src/tools/randomizer/library/add_perks_by_characters.c	\
-	src/tools/randomizer/library/add_all_sided_perks.c	\
-	src/tools/randomizer/library/clear_list.c	\
-	src/tools/randomizer/library/create_first_list_node.c	\
-	src/tools/randomizer/library/remove_in_linked_list.c	\
-	src/tools/randomizer/library/remove_surv_perks_by_characters.c	\
+	src/features/randomizer/library/add_in_linked_list.c	\
+	src/features/randomizer/library/random_picker.c	\
+	src/features/randomizer/library/add_perks_by_characters.c	\
+	src/features/randomizer/library/add_all_sided_perks.c	\
+	src/features/randomizer/library/clear_list.c	\
+	src/features/randomizer/library/create_first_list_node.c	\
+	src/features/randomizer/library/remove_in_linked_list.c	\
+	src/features/randomizer/library/remove_surv_perks_by_characters.c	\
+	\
+	src/features/game_detection/stb_load.c	\
+	src/features/game_detection/library/compare_images.c	\
+	src/features/game_detection/library/crop_image_to_file.c	\
 
 SRC := $(filter-out $(TEST_MAIN), $(SRC))
 OBJ	:= $(patsubst src/%.c, build/obj/%.o, $(SRC))

@@ -4,10 +4,11 @@
 
 #include "app.h"
 #include "project.h"
-#include "tools/randomizer/randomizer.h"
+#include "features/randomizer/randomizer.h"
+#include "features/game_detection/game_detection.h"
 
 static void display_perks_name(surv_randomizer_perks_list_t **list,
-    int *id_perks_picked, int nb_random_perks_pick)
+                               int *id_perks_picked, int nb_random_perks_pick)
 {
     int offset = 0;
     surv_randomizer_perks_list_t *cpy = *list;
@@ -32,6 +33,13 @@ static void temp(void)
         return;
     display_perks_name(&list, test, nb_perk);
     clear_list((void **)&list, SURVIVOR);
+
+    printf("\n");
+    double sim = compare_images("assets/references/build_menu_ref.png", "assets/references/build_menu_open_ref.png");
+
+    if (sim >= 0)
+        printf("Similarité: %.2f%%\n", sim);
+    crop_image_to_file("assets/references/build_menu_ref.png", "assets/references/test.png", 0, 0, 300, 1080);
 }
 
 int main(void)
