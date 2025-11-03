@@ -7,12 +7,12 @@
 #include <math.h>
 #include "project.h"
 
-double compare_images(const char *path1, const char *path2)
+double compare_images(const char *path, const char *ref)
 {
     int w1, h1, n1;
     int w2, h2, n2;
-    unsigned char *img1 = stbi_load(path1, &w1, &h1, &n1, 0);
-    unsigned char *img2 = stbi_load(path2, &w2, &h2, &n2, 0);
+    unsigned char *img1 = stbi_load(path, &w1, &h1, &n1, 0);
+    unsigned char *img2 = stbi_load(ref, &w2, &h2, &n2, 0);
 
     if (!img1 || !img2) {
         fprintf(stderr, "Failed to load images\n");
@@ -20,12 +20,14 @@ double compare_images(const char *path1, const char *path2)
             stbi_image_free(img1);
         if (img2)
             stbi_image_free(img2);
+        remove(path);
         return ERROR;
     }
     if (w1 != w2 || h1 != h2 || n1 != n2) {
         fprintf(stderr, "Erreur : les images n'ont pas la même taille ou les mêmes canaux\n");
         stbi_image_free(img1);
         stbi_image_free(img2);
+        remove(path);
         return ERROR;
     }
 

@@ -25,9 +25,9 @@ static void display_perks_name(surv_randomizer_perks_list_t **list,
 static void temp(void)
 {
     surv_randomizer_perks_list_t *list = calloc(1, sizeof(surv_randomizer_perks_list_t));
-    int nb_perk = 3;
+    int nb_perk = 4;
 
-    add_surv_perks_by_characters((void **)&list, MEG);
+    add_all_sided_perks((void **)&list, SURVIVOR);
     int *test = random_pick_perks((void **)&list, SURVIVOR, nb_perk);
     if (!test)
         return;
@@ -35,16 +35,25 @@ static void temp(void)
     clear_list((void **)&list, SURVIVOR);
 
     printf("\n");
-    double sim = compare_images("assets/references/build_menu_ref.png", "assets/references/build_menu_open_ref.png");
 
-    if (sim >= 0)
-        printf("Similarité: %.2f%%\n", sim);
-    crop_image_to_file("assets/references/build_menu_ref.png", "assets/references/test.png", 0, 0, 300, 1080);
+    crop_image_to_file("assets/test/sample.png", "assets/sample/build_menu_sample.png", 80, 0, 120, 460);
+
+    double sim = compare_images("assets/sample/build_menu_sample.png", "assets/references/build_menu_ref.png");
+
+    if (sim >= 0 && sim >= 97.0) {
+        printf("Menu is closed: %.2f%%\n", sim);
+    } else {
+        sim = compare_images("assets/sample/build_menu_sample.png", "assets/references/build_menu_open_ref.png");
+        if (sim >= 0 && sim >= 97.0) {
+            printf("Menu is opened: %.2f%%\n", sim);
+        } else
+            printf("Bad window: %.2f%%\n", sim);
+    }
 }
 
 int main(void)
 {
-    init_app();
+    //init_app();
     temp();        //TODO temporary function
     return 0;
 }
