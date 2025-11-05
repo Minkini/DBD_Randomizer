@@ -3,7 +3,7 @@
 //
 
 #include "project.h"
-#include "randomizer.h"
+#include "../randomizer.h"
 
 int add_surv_perks_by_characters(void **list, char *character)
 {

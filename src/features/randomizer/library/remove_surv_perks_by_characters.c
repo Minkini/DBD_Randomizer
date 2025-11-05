@@ -2,7 +2,7 @@
 // Created by nicolas on 9/24/25.
 //
 #include "project.h"
-#include "randomizer.h"
+#include "../randomizer.h"
 
 int remove_surv_perks_by_characters(void **list, char *character)
 {

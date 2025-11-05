@@ -2,7 +2,7 @@
 // Created by nicolas on 9/24/25.
 //
 
-#include "randomizer.h"
+#include "../randomizer.h"
 
 static void remove_in_surv_list(surv_randomizer_perks_list_t **list, perks_t *perk_to_remove)
 {

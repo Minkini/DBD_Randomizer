@@ -36,7 +36,7 @@ static void temp(void)
 
     printf("\n");
 
-    crop_image_to_file("assets/test/sample.png", "assets/sample/build_menu_sample.png", 80, 0, 120, 460);
+    crop_image_to_file("assets/test/sample4.png", "assets/sample/build_menu_sample.png", 80, 0, 120, 460);
 
     double sim = compare_images("assets/sample/build_menu_sample.png", "assets/references/build_menu_ref.png");
 
@@ -53,7 +53,7 @@ static void temp(void)
 
 int main(void)
 {
-    //init_app();
+    init_app();
     temp();        //TODO temporary function
     return 0;
 }

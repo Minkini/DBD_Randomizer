@@ -4,7 +4,7 @@
 
 #include "project.h"
 #include "surv_db.h"
-#include "randomizer.h"
+#include "../randomizer.h"
 
 static int add_surv_perk_in_linked_list(surv_randomizer_perks_list_t **perk_list, perks_t *perk_to_add)
 {

@@ -2,7 +2,7 @@
 // Created by nicolas on 10/12/25.
 //
 
-#include "game_detection.h"
+#include "../game_detection.h"
 #include "stb_image.h"
 #include <math.h>
 #include "project.h"

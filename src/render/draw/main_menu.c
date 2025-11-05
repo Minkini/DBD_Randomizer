@@ -2,7 +2,7 @@
 // Created by nicolas on 9/25/25.
 //
 
-#include "content.h"
+#include "../content/content.h"
 #include "project.h"
 #include "render.h"
 

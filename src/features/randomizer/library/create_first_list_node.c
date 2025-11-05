@@ -3,7 +3,7 @@
 //
 
 #include "project.h"
-#include "randomizer.h"
+#include "../randomizer.h"
 
 surv_randomizer_perks_list_t *create_surv_first_list_node(void)
 {

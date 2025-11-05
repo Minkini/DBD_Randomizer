@@ -11,12 +11,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include <SFML/Config.h>
-#include <SFML/System.h>
-#include <SFML/Window.h>
-#include <SFML/Graphics.h>
-#include <SFML/Audio.h>
-#include <SFML/Network.h>
+#include <CSFML/Config.h>
+#include <CSFML/System.h>
+#include <CSFML/Window.h>
+#include <CSFML/Graphics.h>
+#include <CSFML/Audio.h>
+#include <CSFML/Network.h>
 
 #include "scene_enum.h"
 

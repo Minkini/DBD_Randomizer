@@ -3,7 +3,7 @@
 //
 
 #include "project.h"
-#include "game_detection.h"
+#include "../game_detection.h"
 #include "stb_image.h"
 #include "stb_image_write.h"
 

@@ -2,7 +2,7 @@
 // Created by nicolas on 9/18/25.
 //
 
-#include "randomizer.h"
+#include "../randomizer.h"
 #include "project.h"
 
 static void clear_survivor_list(surv_randomizer_perks_list_t **list)

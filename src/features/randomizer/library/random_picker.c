@@ -4,7 +4,7 @@
 
 #include "project.h"
 #include "surv_db.h"
-#include "randomizer.h"
+#include "../randomizer.h"
 
 static void sort_int_array(int *array, int length)
 {

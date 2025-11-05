@@ -7,20 +7,22 @@
 
 TARGET := DBD_Tools
 
-# CSFML
-LIBS := -lcsfml-system -lcsfml-window -lcsfml-graphics -lcsfml-audio -lcsfml-network -lm
+CC := gcc
+
+# CSFML + SFML (MSYS2)
+LIBS := -LC:/msys64/mingw64/lib \
+	-lcsfml-system -lcsfml-window -lcsfml-graphics -lcsfml-audio -lcsfml-network \
+	-lsfml-system -lsfml-window -lsfml-graphics -lsfml-audio -lsfml-network
 
 # Include directories
-INCLUDE := $(shell find . -type f -name '*.h' \
-					-printf '%h\n' | \
-					sort -u | \
-					awk '{print "-iquote",$$0}')
+INCLUDE := $(addprefix -I, $(sort $(dir $(wildcard src/**/*.h src/*.h include/*.h)))) \
+	-I C:/msys64/mingw64/include
 
 # Compilation Flags
-CFLAGS += -Wall -Wextra	\
-	-Wnull-dereference -Wduplicated-cond -Wlogical-op	\
-	-Wshadow -Wfloat-equal -Wcast-align -Wunreachable-code	\
-	-Wjump-misses-init -Wmissing-declarations -Wmissing-prototypes	\
+CFLAGS += -Wall -Wextra \
+	-Wnull-dereference -Wduplicated-cond -Wlogical-op \
+	-Wshadow -Wfloat-equal -Wcast-align -Wunreachable-code \
+	-Wjump-misses-init -Wmissing-declarations -Wmissing-prototypes \
 	-Wundef -g
 
 SRC	= \
@@ -90,7 +92,7 @@ $(TARGET): $(OBJ)
 	@printf "\e[38;5;029m🔄 Compiling target !\e[0m\n"
 	@printf "\e[38;5;029m📜 Name: \e[38;5;220m$(TARGET)\e[0m\n"
 	@mkdir -p build/bin/
-	@gcc -o build/bin/$(TARGET) $(OBJ) $(LIBS)
+	@$(CC) -o build/bin/$(TARGET) $(OBJ) $(LIBS)
 	@cp build/bin/$(TARGET) .
 
 # Clean up generated objects
