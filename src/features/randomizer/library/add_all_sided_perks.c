@@ -14,5 +14,5 @@ int add_all_sided_perks(void **list, player_side_e side)
         }
         return SUCCESS;
     }
-    return ERROR;
+    return FAIL;
 }

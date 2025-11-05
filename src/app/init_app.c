@@ -14,7 +14,7 @@ void init_app(void)
     if (general == NULL) {
         return;
     }
-    if (create_window(general) == ERROR) {
+    if (create_window(general) == FAIL) {
         free(general);
         return;
     }

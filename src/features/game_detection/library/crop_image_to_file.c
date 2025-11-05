@@ -17,20 +17,20 @@ int crop_image_to_file(const char *input_path,
 
     if (!img) {
         fprintf(stderr, "Failed to load image: %s\n", input_path);
-        return ERROR;
+        return FAIL;
     }
     if (crop_x < 0 || crop_y < 0 ||
         crop_x + crop_w > width || crop_y + crop_h > height) {
         fprintf(stderr, "Error: crop size limits (%dx%d)\n", width, height);
         stbi_image_free(img);
-        return ERROR;
+        return FAIL;
     }
     unsigned char *output = malloc(crop_w * crop_h * channels);
 
     if (!output) {
         fprintf(stderr, "Failed to allocate output image\n");
         stbi_image_free(img);
-        return ERROR;
+        return FAIL;
     }
     for (int y = 0; y < crop_h; y++) {
         for (int x = 0; x < crop_w; x++) {

@@ -51,8 +51,19 @@ static void temp(void)
     }
 }
 
+static BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM)
+{
+    char title[256];
+    if (GetWindowTextA(hwnd, title, sizeof(title)) > 0)
+    {
+        printf("HWND: %p | Title: %s\n", hwnd, title);
+    }
+    return TRUE;
+}
+
 int main(void)
 {
+    EnumWindows(EnumWindowsProc, 0);
     init_app();
     temp();        //TODO temporary function
     return 0;
