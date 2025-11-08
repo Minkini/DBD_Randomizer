@@ -7,7 +7,7 @@ SRC = src\features\game_detection\dll\takeGameScreenshot.cpp
 OBJ = src\features\game_detection\dll\takeGameScreenshot.obj
 
 # DLL à générer
-DLL_OUT = capture_dbd.dll
+DLL_OUT = captureWindow.dll
 
 # Règle par défaut
 all: $(DLL_OUT)
