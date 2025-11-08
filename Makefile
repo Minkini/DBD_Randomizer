@@ -12,7 +12,7 @@ CC := gcc
 # CSFML + SFML (MSYS2)
 LIBS := -LC:/msys64/mingw64/lib \
 	-lcsfml-system -lcsfml-window -lcsfml-graphics -lcsfml-audio -lcsfml-network \
-	-lsfml-system -lsfml-window -lsfml-graphics -lsfml-audio -lsfml-network
+	-lsfml-system -lsfml-window -lsfml-graphics -lsfml-audio -lsfml-network -lgdi32
 
 # Include directories
 INCLUDE := $(addprefix -I, $(sort $(dir $(wildcard src/**/*.h src/*.h include/*.h)))) \
@@ -60,6 +60,9 @@ SRC	= \
 	src/features/game_detection/stb_load.c	\
 	src/features/game_detection/library/compare_images.c	\
 	src/features/game_detection/library/crop_image_to_file.c	\
+	src/features/game_detection/library/hookSystem.c	\
+	src/features/game_detection/library/takeGameScreenshot.c	\
+	src/features/game_detection/game_detection.c	\
 
 SRC := $(filter-out $(TEST_MAIN), $(SRC))
 OBJ	:= $(patsubst src/%.c, build/obj/%.o, $(SRC))
@@ -89,8 +92,8 @@ $(DIRS):
 # Link object files to create executable
 $(TARGET): $(OBJ)
 	@printf "\e[38;5;029m✅ Successfully compiled target object !\e[0m\n"
-	@printf "\e[38;5;029m🔄 Compiling target !\e[0m\n"
-	@printf "\e[38;5;029m📜 Name: \e[38;5;220m$(TARGET)\e[0m\n"
+	@printf "\e[38;5;029m✅ Compiling target !\e[0m\n"
+	@printf "\e[38;5;029m✅ Name: \e[38;5;220m$(TARGET)\e[0m\n"
 	@mkdir -p build/bin/
 	@$(CC) -o build/bin/$(TARGET) $(OBJ) $(LIBS)
 	@cp build/bin/$(TARGET) .

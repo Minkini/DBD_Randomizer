@@ -20,14 +20,12 @@ double compare_images(const char *path, const char *ref)
             stbi_image_free(img1);
         if (img2)
             stbi_image_free(img2);
-        remove(path);
         return FAIL;
     }
     if (w1 != w2 || h1 != h2 || n1 != n2) {
-        fprintf(stderr, "Erreur : les images n'ont pas la même taille ou les mêmes canaux\n");
+        fprintf(stderr, "Erreur : les images n'ont pas la meme taille ou les memes canaux\n");
         stbi_image_free(img1);
         stbi_image_free(img2);
-        remove(path);
         return FAIL;
     }
 

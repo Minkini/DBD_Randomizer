@@ -9,7 +9,7 @@ int create_window(general_t *general)
 {
     sfVideoMode mode = sfVideoMode_getDesktopMode();
 
-    general->window = sfRenderWindow_create(mode, "DBD Tools",sfClose |sfResize, 0, NULL);
+    general->window = sfRenderWindow_create(mode, WINDOW_TITLE,sfClose |sfResize, 0, NULL);
     if (general->window == NULL) {
         printf("window creation failed\n");
         return FAIL;

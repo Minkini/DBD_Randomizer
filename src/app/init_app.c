@@ -6,6 +6,7 @@
 #include "../render/window/window.h"
 #include "app.h"
 #include "../render/content/content.h"
+#include "../features/game_detection/game_detection.h"
 
 void init_app(void)
 {
@@ -19,5 +20,6 @@ void init_app(void)
         return;
     }
     load_content(general);
+    initWindowHook();
     run_app(general);
 }

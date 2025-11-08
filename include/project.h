@@ -11,6 +11,10 @@
 #include <stdlib.h>
 #include <time.h>
 
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+#include <windows.h>
+
 #include <CSFML/Config.h>
 #include <CSFML/System.h>
 #include <CSFML/Window.h>
@@ -20,15 +24,23 @@
 
 #include "scene_enum.h"
 
+#define WINDOW_TITLE "DBD Tools"
+
 typedef enum return_code {
     SUCCESS = 0,
-    ERROR = -1,
+    FAIL = -1,
 } return_code_e;
 
 typedef struct content_s content_t;
 
+typedef struct app_variables_s
+{
+    int dbd_menu_state;
+} app_variables_t;
+
 typedef struct general_s {
     sfRenderWindow *window;
+    app_variables_t *app_vars;
     sfEvent event;
     content_t *content;
     scene_e current_scene;

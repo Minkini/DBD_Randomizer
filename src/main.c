@@ -33,37 +33,11 @@ static void temp(void)
         return;
     display_perks_name(&list, test, nb_perk);
     clear_list((void **)&list, SURVIVOR);
-
-    printf("\n");
-
-    crop_image_to_file("assets/test/sample4.png", "assets/sample/build_menu_sample.png", 80, 0, 120, 460);
-
-    double sim = compare_images("assets/sample/build_menu_sample.png", "assets/references/build_menu_ref.png");
-
-    if (sim >= 0 && sim >= 97.0) {
-        printf("Menu is closed: %.2f%%\n", sim);
-    } else {
-        sim = compare_images("assets/sample/build_menu_sample.png", "assets/references/build_menu_open_ref.png");
-        if (sim >= 0 && sim >= 97.0) {
-            printf("Menu is opened: %.2f%%\n", sim);
-        } else
-            printf("Bad window: %.2f%%\n", sim);
-    }
 }
 
-static BOOL CALLBACK EnumWindowsProc(HWND hwnd, LPARAM)
-{
-    char title[256];
-    if (GetWindowTextA(hwnd, title, sizeof(title)) > 0)
-    {
-        printf("HWND: %p | Title: %s\n", hwnd, title);
-    }
-    return TRUE;
-}
 
 int main(void)
 {
-    EnumWindows(EnumWindowsProc, 0);
     init_app();
     temp();        //TODO temporary function
     return 0;
