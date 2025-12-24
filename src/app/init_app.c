@@ -19,6 +19,7 @@ void init_app(void)
         free(general);
         return;
     }
+    SetConsoleOutputCP(CP_UTF8);
     load_content(general);
     initWindowHook();
     run_app(general);

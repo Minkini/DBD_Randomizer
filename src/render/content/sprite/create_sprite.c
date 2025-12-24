@@ -5,7 +5,7 @@
 #include "../content.h"
 #include "project.h"
 
-sfSprite *create_sprite(sfTexture *texture, char const *texture_path)
+sfSprite *create_sprite(sfTexture *texture, char const *texture_path, sfVector2f *position, sfVector2f *scale)
 {
     sfSprite *sprite = NULL;
 
@@ -31,5 +31,9 @@ sfSprite *create_sprite(sfTexture *texture, char const *texture_path)
             return NULL;
         }
     }
+    if (position)
+        sfSprite_setPosition(sprite, *position);
+    if (scale)
+        sfSprite_setScale(sprite, *scale);
     return sprite;
 }

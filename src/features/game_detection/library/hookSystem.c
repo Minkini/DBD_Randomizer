@@ -9,6 +9,17 @@
 #define windowHooked WIDEN(WINDOW_TITLE)
 
 static HWINEVENTHOOK g_hook = NULL;
+static LONG window_active_flag = 0;
+
+void set_window_active_flag(void)
+{
+    InterlockedExchange(&window_active_flag, 1);
+}
+
+int consume_window_active_flag(void)
+{
+    return InterlockedExchange(&window_active_flag, 0);
+}
 
 static void CALLBACK HandleWinEvent(HWINEVENTHOOK, DWORD, HWND hwnd, LONG, LONG, DWORD, DWORD)
 {
@@ -16,8 +27,7 @@ static void CALLBACK HandleWinEvent(HWINEVENTHOOK, DWORD, HWND hwnd, LONG, LONG,
     GetWindowTextW(hwnd, title, 256);
 
     if (wcsstr(title, windowHooked)) {
-        if (game_detection() == FAIL)
-            printf("Something went wrong during the game detection!\n");
+        set_window_active_flag();
     }
 }
 
@@ -29,8 +39,9 @@ void initWindowHook(void)
             NULL, HandleWinEvent, 0, 0, WINEVENT_OUTOFCONTEXT
         );
 
-        if (!g_hook)
+        if (!g_hook) {
             wprintf(L"⚠️  Impossible d'initialiser le hook de fenêtre.\n");
+        }
     }
 }
 

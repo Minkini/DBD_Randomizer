@@ -6,4 +6,5 @@
 #define RENDER_H
 
 void draw_main_menu(general_t *general);
+void draw_randomizer_menu(general_t *general);
 #endif //RENDER_H

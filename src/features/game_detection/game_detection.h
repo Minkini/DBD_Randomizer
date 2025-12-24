@@ -9,9 +9,9 @@
 
 typedef enum dbd_menu_state
 {
+    WRONG,
     OPENED,
     CLOSED,
-    WRONG,
 } dbd_menu_state_e;
 
 double compare_images(const char *path, const char *ref);
@@ -22,9 +22,12 @@ int crop_image_to_file(const char *input_path,
 int capture_window_to_png(const char *window_title, const char *output_path);
 int game_detection(general_t *general);
 int takeGameScreenshot(void);
+
 void initWindowHook(void);
 void checkHookedWindow(void);
 void destroyWindowHook(void);
 
+void set_window_active_flag(void);
+int consume_window_active_flag(void);
 typedef int (*TakeGameScreenshotFunc)(LPCWSTR window);
 #endif //GAME_DETECTION_H

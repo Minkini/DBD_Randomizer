@@ -28,4 +28,5 @@ void clear_list(void **list, player_side_e side);
 surv_randomizer_perks_list_t *create_surv_first_list_node(void);
 void remove_in_linked_list(void **list, player_side_e side, perks_t *perk_to_remove);
 int remove_surv_perks_by_characters(void **list, char *character);
+void exec_randomizer(general_t *general);
 #endif //RANDOMIZER_H

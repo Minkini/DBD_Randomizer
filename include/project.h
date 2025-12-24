@@ -7,6 +7,7 @@
 
 #include <string.h>
 #include <fcntl.h>
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -31,6 +32,11 @@ typedef enum return_code {
     FAIL = -1,
 } return_code_e;
 
+typedef enum shutdown {
+    RUNNING = 0,
+    STOPPING = 1,
+} shutdown_e;
+
 typedef struct content_s content_t;
 
 typedef struct app_variables_s
@@ -44,6 +50,7 @@ typedef struct general_s {
     sfEvent event;
     content_t *content;
     scene_e current_scene;
+    shutdown_e app_state;
 } general_t;
 
 #endif //PROJECT_H

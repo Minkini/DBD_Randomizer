@@ -7,5 +7,5 @@
 void init_perks(void)
 {
     for (int i = 0; i < NB_SURV_PERK; i++)
-        SURV_PERKS_LIST[i].perk_sprite = create_sprite(NULL, SURV_PERKS_LIST[i].icon_path);
+        SURV_PERKS_LIST[i].perk_sprite = create_sprite(NULL, SURV_PERKS_LIST[i].icon_path, NULL, NULL);
 }

@@ -12,7 +12,7 @@ CC := gcc
 # CSFML + SFML (MSYS2)
 LIBS := -LC:/msys64/mingw64/lib \
 	-lcsfml-system -lcsfml-window -lcsfml-graphics -lcsfml-audio -lcsfml-network \
-	-lsfml-system -lsfml-window -lsfml-graphics -lsfml-audio -lsfml-network -lgdi32
+	-lsfml-system -lsfml-window -lsfml-graphics -lsfml-audio -lsfml-network -lgdi32 -D_GNU_SOURCE
 
 # Include directories
 INCLUDE := $(addprefix -I, $(sort $(dir $(wildcard src/**/*.h src/*.h include/*.h)))) \
@@ -38,15 +38,21 @@ SRC	= \
 	\
 	src/render/content/sprite/create_sprite.c	\
 	\
+	src/render/content/textures/create_texture.c	\
+	src/render/content/textures/update_buttons.c	\
+	\
 	src/render/content/tools/init_perks.c	\
 	src/render/content/tools/load_content.c	\
+	src/render/content/tools/load_variables.c	\
 	\
 	src/render/draw/main_menu.c	\
+	src/render/draw/randomizer.c	\
 	\
 	src/scene/scene.c	\
 	\
 	src/event/handle_event.c	\
 	src/event/scene_events/main_menu.c	\
+	src/event/scene_events/randomizer.c	\
 	\
 	src/features/randomizer/library/add_in_linked_list.c	\
 	src/features/randomizer/library/random_picker.c	\
@@ -56,6 +62,7 @@ SRC	= \
 	src/features/randomizer/library/create_first_list_node.c	\
 	src/features/randomizer/library/remove_in_linked_list.c	\
 	src/features/randomizer/library/remove_surv_perks_by_characters.c	\
+	src/features/randomizer/library/exec_randomizer.c	\
 	\
 	src/features/game_detection/stb_load.c	\
 	src/features/game_detection/library/compare_images.c	\

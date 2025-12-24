@@ -5,6 +5,7 @@
 #include "project.h"
 #include "scene.h"
 #include "event.h"
+#include "../../features/game_detection/game_detection.h"
 
 void main_menu_scene_update(general_t *general)
 {

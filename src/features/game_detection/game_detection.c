@@ -5,6 +5,8 @@
 
 int game_detection(general_t *general)
 {
+    int previous = general->app_vars->dbd_menu_state;
+    printf("Previous menu state: %d\n", previous);
     if (takeGameScreenshot() == FAIL)
         return FAIL;
 

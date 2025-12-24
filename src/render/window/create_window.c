@@ -7,15 +7,18 @@
 
 int create_window(general_t *general)
 {
-    sfVideoMode mode = sfVideoMode_getDesktopMode();
+    sfVideoMode video_mode = sfVideoMode_getDesktopMode();
 
-    general->window = sfRenderWindow_create(mode, WINDOW_TITLE,sfClose |sfResize, 0, NULL);
+    video_mode.size.y /= 2;
+    video_mode.size.x /= 2;
+    general->window = sfRenderWindow_create(video_mode, WINDOW_TITLE, sfNone, 0, NULL);
     if (general->window == NULL) {
         printf("window creation failed\n");
         return FAIL;
     }
-
-    HWND hwnd = sfRenderWindow_getNativeHandle(general->window);
-    ShowWindow(hwnd, SW_MAXIMIZE);
+    sfView* view = sfView_create();
+    sfView_setSize(view, (sfVector2f){1920, 1080});
+    sfView_setCenter(view, (sfVector2f){1920/2, 1080/2});
+    sfRenderWindow_setView(general->window, view);
     return SUCCESS;
 }

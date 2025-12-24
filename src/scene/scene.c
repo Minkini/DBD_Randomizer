@@ -8,7 +8,7 @@
 
 scene_t const SCENE_LIST[] = {
     {MAIN_MENU, &main_menu_scene_update, &draw_main_menu},
-    {SURV_RANDOMIZER, NULL, NULL},
+    {RANDOMIZER, &randomizer_menu_scene_update, &draw_randomizer_menu},
     {NONE, NULL, NULL},
 };
 
@@ -24,9 +24,11 @@ void handle_scene(general_t *general)
     sfRenderWindow_display(general->window);
 };
 
-void switch_scene(general_t *general, scene_e new_scene)
+void switch_scene(general_t *general, scene_e new_scene, int (loadFunction)(general_t *general))
 {
     if (general->current_scene != new_scene) {
         general->current_scene = new_scene;
     }
+    if (loadFunction)
+        loadFunction(general);
 }

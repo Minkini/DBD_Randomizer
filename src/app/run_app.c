@@ -9,10 +9,8 @@
 
 int run_app(general_t *general)
 {
-    switch_scene(general, MAIN_MENU);
-    game_detection(); //TODO remove this line
-    while (sfRenderWindow_isOpen(general->window)) {
-        checkHookedWindow();
+    switch_scene(general, RANDOMIZER, &game_detection);
+    while (sfRenderWindow_isOpen(general->window) && general->app_state == RUNNING) {
         handle_scene(general);
     }
     stop_app(general);

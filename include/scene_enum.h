@@ -8,7 +8,7 @@
 typedef enum scene_e {
     NONE = -1,
     MAIN_MENU,
-    SURV_RANDOMIZER,
+    RANDOMIZER,
 } scene_e;
 
 #endif //SCENE_ENUM_H

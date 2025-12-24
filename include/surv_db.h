@@ -60,10 +60,13 @@
 #define SURV_ALL "All"
 
 typedef struct perks_s {
+    int id;
     char *owner_name;
     char *en_name;
     char *fr_name;
     char *icon_path;
+    char *en_description;
+    char *fr_description;
     sfSprite *perk_sprite;
 } perks_t;
 
