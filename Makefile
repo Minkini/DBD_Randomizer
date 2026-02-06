@@ -5,7 +5,7 @@
 ## Makefile SDL2 ready
 ##
 
-TARGET := DBD_Tools
+TARGET := DBD Tools
 
 CC := gcc
 
