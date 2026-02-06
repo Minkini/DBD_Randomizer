@@ -59,6 +59,47 @@
 #define TAURIE "Taurie Cain"
 #define SURV_ALL "All"
 
+#define KILLER_ALL "All"
+#define SPRINGTRAP "Animatronic"
+#define ARTIST "Artist"
+#define BLIGHT "Blight"
+#define BUBBA "Cannibal"
+#define CLOWN "Clown"
+#define DRACULA "The Dark Lord"
+#define CALEB "Deathslinger"
+#define DEMOGORGON "Demogorgon"
+#define DOCTOR "Doctor"
+#define DREDGE "Dredge"
+#define PYRAMID_HEAD "Executioner"
+#define GHOST_FACE "Ghost Face"
+#define KANEKI "Ghoul"
+#define CHUCKY "Good Guy"
+#define HAG "Hag"
+#define BILLY "Billy"
+#define HOUNDMASTER "Houdmaster"
+#define HUNTRESS "Huntress"
+#define KNIGHT "Knight"
+#define LEGION "Legion"
+#define LICH "Lich"
+#define WESKER "Mastermind"
+#define NEMESIS "Nemesis"
+#define FREDDY "Freddy"
+#define NURSE "Nurse"
+#define ONI "Oni"
+#define SADAKO "Onryô"
+#define PIGGY "Pig"
+#define PLAGUE "Plague"
+#define MYERS "Shape"
+#define SINGULARITY "Singularity"
+#define CORDULA "Skull Merchant"
+#define SPIRIT "Spirit"
+#define TRAPPER "Trapper"
+#define TRICKSTER "Trickster"
+#define TWINS "Twins"
+#define UNKNOWN "Unknown"
+#define WRAITH "Wraith"
+#define ALIEN "Xénomorph"
+
 typedef struct perks_s {
     int id;
     char *owner_name;
@@ -71,5 +112,6 @@ typedef struct perks_s {
 } perks_t;
 
 extern perks_t SURV_PERKS_LIST[NB_SURV_PERK];
+extern perks_t KILLER_PERKS_LIST[NB_SURV_PERK];
 
 #endif //SURV_DB_H

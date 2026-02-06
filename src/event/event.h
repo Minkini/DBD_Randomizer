@@ -9,4 +9,5 @@ void handle_event(general_t *general, void (*update)(general_t *general));
 
 void main_menu_scene_update(general_t *general);
 void randomizer_menu_scene_update(general_t *general);
+
 #endif //EVENT_H

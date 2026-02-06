@@ -3,13 +3,14 @@
 //
 
 #include "project.h"
-#include "surv_db.h"
+#include "db.h"
 #include "../randomizer.h"
+#include "content/content.h"
 
-static int add_surv_perk_in_linked_list(surv_randomizer_perks_list_t **perk_list, perks_t *perk_to_add)
+static int add_surv_perk_in_linked_list(randomizer_perks_list_t **perk_list, perks_t *perk_to_add)
 {
-    surv_randomizer_perks_list_t *new_perk = malloc(sizeof(surv_randomizer_perks_list_t));
-    surv_randomizer_perks_list_t *cpy = *perk_list;
+    randomizer_perks_list_t *new_perk = malloc(sizeof(randomizer_perks_list_t));
+    randomizer_perks_list_t *cpy = *perk_list;
     if (!new_perk)
         return FAIL;
 
@@ -32,13 +33,13 @@ static int add_surv_perk_in_linked_list(surv_randomizer_perks_list_t **perk_list
     return SUCCESS;
 }
 
-int add_in_randomizer_list(void **list, player_side_e side, perks_t *perk_to_add)
+int add_in_randomizer_list(general_t *general, player_side_e side, perks_t *perk_to_add)
 {
     if (side == SURVIVOR) {
-        return add_surv_perk_in_linked_list((surv_randomizer_perks_list_t **)list, perk_to_add);
+        return add_surv_perk_in_linked_list(&general->content->surv_perk_list, perk_to_add);
     }
     if (side == KILLER) {
-        return SUCCESS;
+        return add_surv_perk_in_linked_list(&general->content->killer_perk_list, perk_to_add);
     }
     return FAIL;
 }

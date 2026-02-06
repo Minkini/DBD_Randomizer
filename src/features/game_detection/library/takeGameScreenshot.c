@@ -12,7 +12,7 @@ int takeGameScreenshot(void)
         return 1;
     }
 
-    TakeGameScreenshotFunc TakeScreenshot = (TakeGameScreenshotFunc)GetProcAddress(dll, "TakeGameScreenshot");
+    TakeGameScreenshotFunc TakeScreenshot = (TakeGameScreenshotFunc)(intptr_t)GetProcAddress(dll, "TakeGameScreenshot");
     if (!TakeScreenshot) {
         printf("Impossible de trouver la fonction !\n");
         FreeLibrary(dll);

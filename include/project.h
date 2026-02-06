@@ -7,7 +7,7 @@
 
 #include <string.h>
 #include <fcntl.h>
-#define _GNU_SOURCE
+#define GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -43,6 +43,20 @@ typedef struct app_variables_s
 {
     int dbd_menu_state;
 } app_variables_t;
+
+typedef struct perks_s perks_t;
+
+typedef struct build_s {
+    int side;
+    perks_t *perk1;
+    perks_t *perk2;
+    perks_t *perk3;
+    perks_t *perk4;
+    void *object;
+    void *addon1;
+    void *addon2;
+    void *offering;
+} build_t;
 
 typedef struct general_s {
     sfRenderWindow *window;

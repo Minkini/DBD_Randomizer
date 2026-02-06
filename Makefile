@@ -29,6 +29,7 @@ SRC	= \
 	src/main.c	\
 	\
 	const/surv_perk_list.c	\
+	const/killer_perk_list.c	\
 	\
 	src/app/init_app.c	\
 	src/app/run_app.c	\
@@ -54,6 +55,8 @@ SRC	= \
 	src/event/scene_events/main_menu.c	\
 	src/event/scene_events/randomizer.c	\
 	\
+	src/event/functions/close_window.c	\
+	\
 	src/features/randomizer/library/add_in_linked_list.c	\
 	src/features/randomizer/library/random_picker.c	\
 	src/features/randomizer/library/add_perks_by_characters.c	\
@@ -74,6 +77,7 @@ SRC	= \
 SRC := $(filter-out $(TEST_MAIN), $(SRC))
 OBJ	:= $(patsubst src/%.c, build/obj/%.o, $(SRC))
 DIRS := $(sort $(dir $(OBJ)))
+RESOURCES = build/obj/icon.o
 
 BUILT_OBJ =
 
@@ -81,6 +85,10 @@ BUILT_OBJ =
 
 all: $(TARGET)
 	@printf "\e[38;5;029m✅ Everything is up to date !\e[0m\n"
+
+build/obj/icon.o: assets/icons/logo/icon.rc
+	@printf "\e[38;5;220mCompiling icon.rc -> $@\e[0m\n"
+	@windres $< -O coff -o $@
 
 # Compile source files to object files
 build/obj/%.o: src/%.c | $(DIRS)
@@ -97,12 +105,12 @@ $(DIRS):
 	@mkdir -p $@
 
 # Link object files to create executable
-$(TARGET): $(OBJ)
+$(TARGET): $(OBJ) $(RESOURCES)
 	@printf "\e[38;5;029m✅ Successfully compiled target object !\e[0m\n"
 	@printf "\e[38;5;029m✅ Compiling target !\e[0m\n"
 	@printf "\e[38;5;029m✅ Name: \e[38;5;220m$(TARGET)\e[0m\n"
 	@mkdir -p build/bin/
-	@$(CC) -o build/bin/$(TARGET) $(OBJ) $(LIBS)
+	@$(CC) -o build/bin/$(TARGET) $(OBJ) $(RESOURCES) $(LIBS)
 	@cp build/bin/$(TARGET) .
 
 # Clean up generated objects

@@ -1,7 +1,7 @@
 //
 // Created by nicolas on 9/24/25.
 //
-#include "surv_db.h"
+#include "db.h"
 #include "../content.h"
 
 void init_perks(void)

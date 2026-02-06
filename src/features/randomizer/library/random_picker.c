@@ -3,70 +3,104 @@
 //
 
 #include "project.h"
-#include "surv_db.h"
+#include "db.h"
 #include "../randomizer.h"
+#include "content/content.h"
 
-static void sort_int_array(int *array, int length)
+static int get_list_len(randomizer_perks_list_t **list)
 {
-    int temp;
-    int swapped;
+    int count = 0;
+    randomizer_perks_list_t *list_tmp = *list;
 
-    do {
-        swapped = 0;
-        for (int i = 0; i < length - 1; i++) {
-            if (array[i] > array[i + 1]) {
-                temp = array[i];
-                array[i] = array[i + 1];
-                array[i + 1] = temp;
-                swapped = 1;
-            }
-        }
-    } while (swapped);
+    while (list_tmp) {
+        count++;
+        list_tmp = list_tmp->next;
+    }
+    return count;
 }
 
-static void add_random_number_in_array(int *id_perks_picked,
-    int nb_random_perks_pick, int count_perks_in_list)
+static int cmp_int(const void *a, const void *b)
 {
-    srand(time(NULL));
-    for (int i = 0; i < nb_random_perks_pick; i++) {
-        int nb = rand() % count_perks_in_list;
+    return (*(int *)a - *(int *)b);
+}
+
+static int *generate_unique_random_sorted(int n, int max)
+{
+    int *arr;
+    int i;
+    int value;
+
+    if (n <= 0 || max <= 0 || n > max)
+        return NULL;
+
+    arr = malloc(sizeof(int) * n);
+    if (!arr)
+        return NULL;
+
+    for (i = 0; i < n; ) {
+        value = rand() % max;
+
         for (int j = 0; j < i; j++) {
-            if (nb == id_perks_picked[j]) {
-                nb = rand() % count_perks_in_list;
-                j = -1;
+            if (arr[j] == value)
+                break;
+            if (j == i - 1) {
+                arr[i++] = value;
+                break;
             }
         }
-        id_perks_picked[i] = nb;
+
+        if (i == 0) {
+            arr[i++] = value;
+        }
     }
+    qsort(arr, n, sizeof(int), cmp_int);
+    return arr;
 }
 
-static int *pick_n_random_surv_perks(surv_randomizer_perks_list_t **perks, int nb_random_perks_pick)
+static void pick_n_random_perks(randomizer_perks_list_t **perks, int nb_random_perks_pick, build_t *build, player_side_e side)
 {
-    int count_perks_in_list = 0;
-    surv_randomizer_perks_list_t *cpy = *perks;
-    int *id_perks_picked = malloc(sizeof(int) * nb_random_perks_pick);
+    int len = get_list_len(perks);
+    randomizer_perks_list_t *cpy = *perks;
+    int *random_perks = generate_unique_random_sorted(nb_random_perks_pick, len);
+    if (!random_perks)
+        return;
+    int j = 0;
 
-    if (!id_perks_picked || !cpy)
-        return NULL;
-
-    while (cpy) {
-        count_perks_in_list++;
-        cpy = cpy->next;
+    build->side = side;
+    for (int i = 0; i < nb_random_perks_pick; i++) {
+        int offset = random_perks[i];
+        for (; j < offset; j++)
+            cpy = cpy->next;
+        switch (i) {
+            case 1:
+                build->perk2 = cpy->perk;
+                break;
+            case 2:
+                build->perk3 = cpy->perk;
+                break;
+            case 3:
+                build->perk4 = cpy->perk;
+                break;
+            default:
+                build->perk1 = cpy->perk;
+                break;
+        }
     }
-    if (count_perks_in_list < nb_random_perks_pick) {
-        free(id_perks_picked);
-        return NULL;
-    }
-    add_random_number_in_array(id_perks_picked, nb_random_perks_pick, count_perks_in_list);
-    sort_int_array(id_perks_picked, nb_random_perks_pick);
-    return id_perks_picked;
+    free(random_perks);
 }
 
-int *random_pick_perks(void **list, player_side_e side, int nb_random_perks_pick)
+void random_pick_perks(general_t *general, player_side_e side, build_t *build)
 {
-    if (nb_random_perks_pick < MIN_RANDOM_PERKS_PICK || nb_random_perks_pick > MAX_RANDOM_PERKS_PICK)
-            return NULL;
+    if (general->content->variables->nb_perks_to_pick < MIN_RANDOM_PERKS_PICK || general->content->variables->nb_perks_to_pick > MAX_RANDOM_PERKS_PICK)
+            return;
     if (side == SURVIVOR)
-        return pick_n_random_surv_perks((surv_randomizer_perks_list_t **)list, nb_random_perks_pick);
-    return NULL;
+        pick_n_random_perks(&general->content->surv_perk_list, general->content->variables->nb_perks_to_pick, build, side);
+    if (side == KILLER)
+        pick_n_random_perks(&general->content->killer_perk_list, general->content->variables->nb_perks_to_pick, build, side);
+    printf("side: %d\n", build->side);
+    printf("perk1: %s\n", build->perk1->en_name);
+    printf("perk2: %s\n", build->perk2->en_name);
+    printf("perk3: %s\n", build->perk3->en_name);
+    printf("perk4: %s\n", build->perk4->en_name);
+    printf("------------------------------------\n");
 }

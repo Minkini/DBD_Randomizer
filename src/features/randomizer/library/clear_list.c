@@ -4,11 +4,12 @@
 
 #include "../randomizer.h"
 #include "project.h"
+#include "content/content.h"
 
-static void clear_survivor_list(surv_randomizer_perks_list_t **list)
+static void clear_list(randomizer_perks_list_t **list)
 {
-    surv_randomizer_perks_list_t *cpy = *list;
-    surv_randomizer_perks_list_t *tmp = NULL;
+    randomizer_perks_list_t *cpy = *list;
+    randomizer_perks_list_t *tmp = NULL;
 
     while (cpy) {
         tmp = cpy->next;
@@ -18,9 +19,10 @@ static void clear_survivor_list(surv_randomizer_perks_list_t **list)
     *list = create_surv_first_list_node();
 }
 
-void clear_list(void **list, player_side_e side)
+void clear_sided_list(general_t *general, player_side_e side)
 {
-    if (side == SURVIVOR) {
-        clear_survivor_list((surv_randomizer_perks_list_t **)list);
-    }
+    if (side == SURVIVOR)
+        clear_list(&general->content->surv_perk_list);
+    if (side == KILLER)
+        clear_list(&general->content->killer_perk_list);
 }

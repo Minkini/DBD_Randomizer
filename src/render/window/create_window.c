@@ -20,5 +20,13 @@ int create_window(general_t *general)
     sfView_setSize(view, (sfVector2f){1920, 1080});
     sfView_setCenter(view, (sfVector2f){1920/2, 1080/2});
     sfRenderWindow_setView(general->window, view);
+
+    sfImage *icon = sfImage_createFromFile("assets/icons/logo/logo.png");
+    if (icon) {
+        const uint8_t *pixels = sfImage_getPixelsPtr(icon);
+        sfVector2u size = sfImage_getSize(icon);
+
+        sfRenderWindow_setIcon(general->window, size, pixels);
+    }
     return SUCCESS;
 }

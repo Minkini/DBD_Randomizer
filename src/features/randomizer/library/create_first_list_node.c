@@ -5,9 +5,9 @@
 #include "project.h"
 #include "../randomizer.h"
 
-surv_randomizer_perks_list_t *create_surv_first_list_node(void)
+randomizer_perks_list_t *create_surv_first_list_node(void)
 {
-    surv_randomizer_perks_list_t *node = malloc(sizeof(surv_randomizer_perks_list_t));
+    randomizer_perks_list_t *node = malloc(sizeof(randomizer_perks_list_t));
 
     if (!node)
         return NULL;

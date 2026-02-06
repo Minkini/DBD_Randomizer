@@ -10,12 +10,15 @@
 
 typedef struct sprite_s {
     sfSprite *RandomizeButton;
+    sfSprite *WindowCloseButton;
 } sprite_t;
 
 typedef struct texture_s {
     sfTexture *RandomizeButtonNeutral;
     sfTexture *RandomizeButtonOver;
     sfTexture *RandomizeButtonPress;
+    sfTexture *WindowCloseButton;
+    sfTexture *WindowCloseButtonOver;
 } texture_t;
 
 typedef struct variables_s {
@@ -26,7 +29,8 @@ typedef struct content_s {
     sprite_t *sprite;
     texture_t *texture;
     variables_t *variables;
-    surv_randomizer_perks_list_t *surv_perk_list;
+    randomizer_perks_list_t *surv_perk_list;
+    randomizer_perks_list_t *killer_perk_list;
 } content_t;
 
 sfSprite *create_sprite(sfTexture *texture, char const *texture_path, sfVector2f *position, sfVector2f *scale);
